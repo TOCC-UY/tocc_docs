@@ -29,7 +29,8 @@ This method receives a package delivery information object in the request body a
   "destinationLongitude": 0,
   "destinationLatitude": 0,
   "orderNumber": "string",
-  "purchaseDate": "2024-01-01T00:00:00.000Z"
+  "purchaseDate": "2024-01-01T00:00:00.000Z",
+  "estimateOnly" : true
 }
 
 ```
@@ -39,7 +40,7 @@ This method receives a package delivery information object in the request body a
 | storeId  | `Integer`  | Unique client Id |
 | distance  | `Integer`  | Distance in meters. If distance is different than 0, then this value is used for the emission estimate and origin and destination Lat/Lon/Address values are ignored |
 | weight  |  `Double`  | Weight in Kg of the package |
-| userEmail  | `String`  | Customer email address |
+| userEmail  | `String`  | Customer email address. `if estimateOnly == true`, this field is optional. `if estimateOnly == false`, this field is mandatory |
 | userFirstName  | `String`  | Customer first name |
 | userLastName  | `String`  | Customer last name |
 | details  | `String`  | free text field for order details |
@@ -49,6 +50,7 @@ This method receives a package delivery information object in the request body a
 | deliveryAddressLine2  | `String`  | Address line 2 of delivery (Ignored if `distance != 0` or `destinationLatitude!=0` and `destinationLongitude!=0`) |
 | orderNumber  | `String`  | Client inernal order number for delivery |
 | purchaseDate  | `DateTime`  | Delivery Creation Date |
+| estimateOnly  | `Boolean`  | If `true`, package emission is estimated but not confirmed. If `false`, emission neutralization is marked as confirmed and paid. Certificate is automatically sent to final customer |
 
 Each estimation request creates a unique identifier. This identifier is used to obtain the unique certificate purchase URL for each delivery. 
 **Response**
